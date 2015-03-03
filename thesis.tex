@@ -2,29 +2,40 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath, amssymb,amsfonts}
-\usepackage{epsfig}
-\usepackage{verbatim}
+\usepackage{amsmath, amssymb, amsfonts}
 \usepackage{natbib}
 \usepackage{HYastroPHD}
 
-\defcitealias{key}{Paper I}
+% Defining these for your included papers will be useful
+\defcitealias{yourcitekey1}{Paper I}
+\defcitealias{yourcitekey2}{Paper II} % etc.
 
 % Set up the basic information
 \title{Example thesis}
 \author{Olli Wilkman}
-\where{the lecture hall}
-\when{the date of the defense}
+\where{some lecture hall}
+\when{the date of the defense} 
 
+% The number of this thesis in the series, the year of publication, and the
+% number of pages (will appear as "N p. + appendices" on the abstract page).
 \seriesnumber{500}
 \publicationyear{2015}
 \pages{100}
 
+% These commands can also be left out, in which case they are not printed
 \printISSN{XX-XX}
 \printISBN{XX-XX-XX-XX-XX}
 \pdfISSN{YY-YY}
 \pdfISBN{YY-YY-YY-YY-YY}
 \ISSNL{ZZ-ZZ}
+
+% INSPEC classification codes and some keywords will appear on
+% the abstract page if these commands are given.
+\INSPEC{ABC1234}
+\keywords{example, template, \LaTeX}
+
+% Description of the cover picture. Leave empty if no picture.
+\covercaption{A very pretty picture.} 
 
 
 \begin{document}
@@ -81,7 +92,8 @@ The thesis consists of four journal publications:
   \item \textbf{Paper III:} Paper III
   \item \textbf{Paper IV:} Paper IV
 \end{itemize}
-The papers are summarised below. The author's contribution to the papers is described at the end of each section.
+The papers are summarised below. The author's contribution to the papers is
+described at the end of each section.
 
 \section{Paper I}
 Paper I

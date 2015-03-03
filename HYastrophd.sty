@@ -1,0 +1,99 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{HYastroPHD}[2013/01/13 Helsinki astronomy PhD thesis]
+
+\RequirePackage{url}
+
+\newcommand{\apj}{The Astrophysical Journal}
+\newcommand{\apjl}{The Astrophysical Journal Letters}
+\newcommand{\apjs}{The Astrophysical Journal Supplement Series}
+\newcommand{\aap}{Astronomy \& Astrophysics}
+\newcommand{\aj}{The Astronomical Journal}
+\newcommand{\aaps}{Astronomy \& Astrophysics Supplement Series}
+\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society}
+\newcommand{\solphys}{Solar Physics}
+\newcommand{\jqsrt}{Journal of Quantitative Spectroscopy and Radiative Transfer}
+\newcommand{\araa}{Annual Review of Astronomy \& Astrophysics}
+\newcommand{\pre}{Physical Reviews E}
+\newcommand{\pasj}{Publications of the Astronomical Society of the Pacific}
+
+\hfuzz5pt
+\addtolength{\textwidth}{1.5cm}
+\addtolength{\voffset}{-0.8cm}
+\addtolength{\hoffset}{-0.75cm}
+\addtolength{\textheight}{2cm}
+
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]{\setlength{\baselineskip}{#1 \defbaselineskip}}
+\newcommand{\doublespacing}{\setlength{\baselineskip}{2.0 \defbaselineskip}}
+\newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
+
+\interfootnotelinepenalty=1000
+\sloppy
+
+\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
+\renewcommand{\author}[1]{\newcommand{\@name}{#1}}
+\newcommand{\where}[1]{\newcommand{\@where}{#1}}
+\newcommand{\when}[1]{\newcommand{\@when}{#1}}
+\newcommand{\seriesnumber}[1]{\newcommand{\@theseriesnumber}{#1}}
+%\newcommand{\year}[1]{\newcommand{\@theyear}{#1}}
+\newcommand{\@theyear}{2015}
+
+\renewcommand{\maketitle}{%
+\begin{titlepage}
+$ $
+UNIVERSITY OF HELSINKI \hspace{2cm} REPORT SERIES IN ASTRONOMY
+\vspace{0.9cm}
+\center
+No. \@theseriesnumber
+
+\vspace{4cm}
+%\center
+
+\Huge{\textsf{\@title}}
+\vspace{2em}
+
+\Large{\textsf{\textbf{\@name}\\}}
+
+\vspace{2em}
+
+\Large{\textsc{Academic dissertation\\}
+
+\vspace{2em}
+
+	Department of Physics\\
+	Faculty of Science\\
+	University of Helsinki\\
+	Helsinki, Finland\\
+
+\vspace{5em}
+
+\normalsize{
+  \textit{To be presented, with the permission of the Faculty of Science of
+the University of Helsinki, for public criticism in \@where~on \@when, at 12 o'clock noon.}}
+
+\vspace{1.2em}
+
+\normalsize{Helsinki \@theyear}
+}
+\end{titlepage}
+\begin{titlepage}
+\textbf{}
+%\textbf{Cover picture:} The IRAM 30-m telescope on Pico Veleta in the Spanish
+%Sierra Nevada. Photo taken by O. Miettinen.
+%\topmargin 5.5in
+\vspace{39.5em}
+\center
+\noindent ISSN XX-XX (printed version)\\
+ISBN XX-XX-XX-XX-XX (printed version)\\
+Helsinki \@theyear\\
+Helsinki University Print (Unigrafia)\\
+\vspace{0.7em}
+ISSN XX-XX (pdf version)\\
+ISBN XX-XX-XX-XX-XX (pdf version)\\
+ISSN-L XX-XX\\
+http://ethesis.helsinki.fi/\\
+Helsinki \@theyear\\
+Electronic Publications @ University of Helsinki (Helsingin yliopiston verkkojulkaisut)
+\end{titlepage}
+}

@@ -1,12 +1,18 @@
-TEXFLAGS=-output-directory output -halt-on-error
+TEXOUT=output
+TEXFLAGS=-output-directory $(TEXOUT) -halt-on-error
 
+default: nobib
+	
 .phony: all
-all: thesis.pdf
+all: thesis.tex
+	mkdir -p output
+	pdflatex $(TEXFLAGS) thesis.tex
+	bibtex $(TEXOUT)/thesis
+	pdflatex $(TEXFLAGS) thesis.tex
+	pdflatex $(TEXFLAGS) thesis.tex
 
-thesis.pdf: output/thesis.pdf
-	cp output/thesis.pdf .
-
-output/thesis.pdf: thesis.tex
+.phony: nobib
+nobib: thesis.tex
 	mkdir -p output
 	pdflatex $(TEXFLAGS) thesis.tex
 	pdflatex $(TEXFLAGS) thesis.tex

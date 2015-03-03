@@ -10,6 +10,7 @@
 
 \defcitealias{key}{Paper I}
 
+% Set up the basic information
 \title{Example thesis}
 \author{Olli Wilkman}
 \where{the lecture hall}
@@ -28,10 +29,10 @@
 
 \begin{document}
 
+% Front matter, with roman numerals for page numbers
 \frontmatter
 
 \maketitle
-
 
 \begin{abstract}
 	Abstract goes here.
@@ -40,7 +41,6 @@
 \begin{acknowledgements}
 	Thanks go here.
 \end{acknowledgements}
-
 
 \begin{publications}
 	\textbf{Paper I:} Paper I \\
@@ -55,22 +55,25 @@
 \pagestyle{headings}
 \tableofcontents
 
+
+% The text itself begins here, changes to arabic numerals
+% and resets page counter.
 \mainmatter
 
 \chapter{Introduction}
-\setcounter{page}{1} %\pagenumbering{arabic}
+
+\chapter{Some chapter title}
+
+\section{A section in the Introduction chapter}
 
 
-\chapter{Theoretical foundation}
+\chapter{Another chapter}
 
 
-\chapter{Results}
 
-
-\chapter{Discussion}
-
-
+% The summary of papers chapter should looks something like this:
 \chapter{Summary of the publications}
+
 The thesis consists of four journal publications:
 \begin{itemize}
   \item \textbf{Paper I:} Paper I
@@ -92,15 +95,14 @@ Paper III
 \section{Paper IV}
 Paper IV
 
-\chapter{Conclusions and future prospects}
+% And finally a conclusions chapter
+\chapter{Concluding remarks}
 Conclusions
 
+% Bibliography below
 \setlinespacing{1.0}
 \addcontentsline{toc}{chapter}{Bibliography}
-
 \bibliographystyle{apj}
 \bibliography{thesis}
 
 \end{document}
-
-

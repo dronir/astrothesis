@@ -9,6 +9,7 @@ thesis.pdf: output/thesis.pdf
 output/thesis.pdf: thesis.tex
 	mkdir -p output
 	pdflatex $(TEXFLAGS) thesis.tex
+	pdflatex $(TEXFLAGS) thesis.tex
 
 .phony: clean
 clean:

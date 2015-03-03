@@ -1,8 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{HYastroPHD}[2013/01/13 Helsinki astronomy PhD thesis]
+\ProvidesPackage{HYastroPHD}[2015/03/03 Helsinki astronomy PhD thesis]
 
 \RequirePackage{url}
+\RequirePackage{color}
 
+% ----------------- Set up some journal commands -----------------
 \newcommand{\apj}{The Astrophysical Journal}
 \newcommand{\apjl}{The Astrophysical Journal Letters}
 \newcommand{\apjs}{The Astrophysical Journal Supplement Series}
@@ -16,48 +18,63 @@
 \newcommand{\pre}{Physical Reviews E}
 \newcommand{\pasj}{Publications of the Astronomical Society of the Pacific}
 
+% ----------------- Set up a bunch of layout rules -----------------
 \hfuzz5pt
 \addtolength{\textwidth}{1.5cm}
 \addtolength{\voffset}{-0.8cm}
 \addtolength{\hoffset}{-0.75cm}
 \addtolength{\textheight}{2cm}
-
 \newlength{\defbaselineskip}
 \setlength{\defbaselineskip}{\baselineskip}
 \newcommand{\setlinespacing}[1]{\setlength{\baselineskip}{#1 \defbaselineskip}}
 \newcommand{\doublespacing}{\setlength{\baselineskip}{2.0 \defbaselineskip}}
 \newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
-
 \pagestyle{plain}
 \interfootnotelinepenalty=1000
 \sloppy
 
-\newcommand{\where}[1]{\newcommand{\@where}{#1}}
-\newcommand{\when}[1]{\newcommand{\@when}{#1}}
-\newcommand{\seriesnumber}[1]{\newcommand{\@theseriesnumber}{#1}}
-\newcommand{\publicationyear}[1]{\newcommand{\@theyear}{#1}}
-\newcommand{\printISSN}[1]{\renewcommand{\@printISSN}{#1}}
-\newcommand{\printISBN}[1]{\renewcommand{\@printISBN}{#1}}
-\newcommand{\pdfISSN}[1]{\renewcommand{\@pdfISSN}{#1}}
-\newcommand{\pdfISBN}[1]{\renewcommand{\@pdfISBN}{#1}}
-\newcommand{\ISSNL}[1]{\renewcommand{\@ISSNL}{#1}}
-\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
-\newcommand{\INSPEC}[1]{\renewcommand{\@INSPEC}{#1}}
-\newcommand{\pages}[1]{\renewcommand{\@pages}{#1}}
+% ----------------- Set up commands for the template values -----------------
 
-\newcommand{\@printISSN}{unknown}
-\newcommand{\@printISBN}{unknown}
-\newcommand{\@pdfISSN}{unknown}
-\newcommand{\@pdfISBN}{unknown}
-\newcommand{\@ISSNL}{unknown}
+% Define setter commands for internals
+\newcommand{\where}[1]{\renewcommand{\@where}{#1}}
+\newcommand{\when}[1]{\renewcommand{\@when}{#1}}
+\newcommand{\seriesnumber}[1]{\renewcommand{\@theseriesnumber}{#1}}
+\newcommand{\publicationyear}[1]{\renewcommand{\@theyear}{#1}}
+\newcommand{\printISSN}[1]{\renewcommand{\@printISSN}{ISSN #1~(print version)}}
+\newcommand{\printISBN}[1]{\renewcommand{\@printISBN}{ISBN #1~(print version)}}
+\newcommand{\pdfISSN}[1]{\renewcommand{\@pdfISSN}{ISSN #1~(pdf version)}}
+\newcommand{\pdfISBN}[1]{\renewcommand{\@pdfISBN}{ISBN #1~(pdf version)}}
+\newcommand{\ISSNL}[1]{\renewcommand{\@ISSNL}{ISSN-L #1}}
+\newcommand{\keywords}[1]{\renewcommand{\@keywords}{Keywords: #1}}
+\newcommand{\INSPEC}[1]{\renewcommand{\@INSPEC}{Classification (INSPEC): #1}}
+\newcommand{\pages}[1]{\renewcommand{\@pages}{#1}}
+\newcommand{\covercaption}[1]{\renewcommand{\@covertext}{\textbf{Cover picture:} #1}}
+
+% Give default values to some of the internals
+\newcommand{\@where}{\textcolor{red}{where?}}
+\newcommand{\@when}{\textcolor{red}{when?}}
+\newcommand{\@theyear}{\textcolor{red}{????}}
+\newcommand{\@theseriesnumber}{\textcolor{red}{??}}
+\newcommand{\@printISSN}{}
+\newcommand{\@printISBN}{}
+\newcommand{\@pdfISSN}{}
+\newcommand{\@pdfISBN}{}
+\newcommand{\@ISSNL}{}
 \newcommand{\@keywords}{}
 \newcommand{\@INSPEC}{}
-\newcommand{\@pages}{0}
+\newcommand{\@pages}{\textcolor{red}{?}}
+\newcommand{\@covertext}{}
+
+
+% ----------------- Set the page numberings for front and main matter -----------------
 
 \newcommand{\frontmatter}{\setcounter{page}{1} \pagenumbering{roman}}
 \newcommand{\mainmatter}{\setcounter{page}{1} \pagenumbering{arabic}}
 
 
+% ----------------- Set up the title page -----------------
+
+% First the actual title page
 \renewcommand{\maketitle}{%
 \begin{titlepage}
 
@@ -88,30 +105,26 @@ No. \@theseriesnumber
 
 \normalsize{
   \textit{To be presented, with the permission of the Faculty of Science of
-the University of Helsinki, for public criticism in \@where~on \@when, at 12 o'clock noon.}}
+the University of Helsinki, for public criticism in \@where~on \@when.}}
 
 \vspace{1.2em}
 
 \normalsize{Helsinki \@theyear}
 }
 \end{titlepage}
+
+% Then the publication info page, still inside the \maketitle command
 \begin{titlepage}
-
-
 \textbf{}
-%\textbf{Cover picture:} The IRAM 30-m telescope on Pico Veleta in the Spanish
-%Sierra Nevada. Photo taken by O. Miettinen.
+\@covertext
 %\topmargin 5.5in
 \vspace{39.5em}
 \center
-\noindent ISSN \@printISSN~(printed version)\\
-ISBN \@printISBN~(printed version)\\
+\noindent \@printISSN \\ \@printISBN \\
 Helsinki \@theyear\\
 Helsinki University Print (Unigrafia)\\
 \vspace{0.7em}
-ISSN \@pdfISSN~(pdf version)\\
-ISBN \@pdfISBN~(pdf version)\\
-ISSN-L \@ISSNL\\
+\@pdfISSN \\ \@pdfISBN \\ \@ISSNL\\
 http://ethesis.helsinki.fi/\\
 Helsinki \@theyear\\
 Electronic Publications @ University of Helsinki\\(Helsingin yliopiston verkkojulkaisut)
@@ -119,22 +132,25 @@ Electronic Publications @ University of Helsinki\\(Helsingin yliopiston verkkoju
 }
 
 
+% ----------------- Make the abstract environment -----------------
+
 \renewenvironment{abstract}{%
 \clearpage
 \small
-\noindent \@author: \textbf{\@title}, University of Helsinki, \@theyear, \@pages~p.$+$appendices, 
+\noindent \@author: \textbf{\@title},
+University of Helsinki, \@theyear, \@pages~p. $+$ appendices, 
 University of Helsinki Report Series in Astronomy, No. \@theseriesnumber,
-ISSN \@printISSN~(printed version), ISBN \@printISBN~(printed version),
-ISSN \@pdfISSN~(pdf version), ISBN \@pdfISBN~(pdf version), ISSN-L \@ISSNL
+\@printISSN, \@printISBN, \@pdfISSN, \@pdfISBN, \@ISSNL
 
 \vspace{0.3cm}
-\noindent Classification (INSPEC): \@INSPEC \\
-\noindent Keywords: \@keywords
+\noindent \@INSPEC \\
+\noindent \@keywords
 
 \normalsize
 \section*{Abstract}
-}% ends before abstract
-{}% after abstract
+}{}
+
+% ----------------- Make the acknowledgements environment -----------------
 
 \newenvironment{acknowledgements}{%
 \clearpage
@@ -142,9 +158,10 @@ ISSN \@pdfISSN~(pdf version), ISBN \@pdfISBN~(pdf version), ISSN-L \@ISSNL
 \section*{Acknowledgements}
 }{}
 
+% ----------------- Make the publications environment -----------------
+
 \newenvironment{publications}{%
 \clearpage
 \setlinespacing{1.25}
 \section*{List of publications}
 }{}
-

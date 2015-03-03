@@ -28,32 +28,50 @@
 \newcommand{\doublespacing}{\setlength{\baselineskip}{2.0 \defbaselineskip}}
 \newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
 
+\pagestyle{plain}
 \interfootnotelinepenalty=1000
 \sloppy
 
-\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
-\renewcommand{\author}[1]{\newcommand{\@name}{#1}}
 \newcommand{\where}[1]{\newcommand{\@where}{#1}}
 \newcommand{\when}[1]{\newcommand{\@when}{#1}}
 \newcommand{\seriesnumber}[1]{\newcommand{\@theseriesnumber}{#1}}
-%\newcommand{\year}[1]{\newcommand{\@theyear}{#1}}
-\newcommand{\@theyear}{2015}
+\newcommand{\publicationyear}[1]{\newcommand{\@theyear}{#1}}
+\newcommand{\printISSN}[1]{\renewcommand{\@printISSN}{#1}}
+\newcommand{\printISBN}[1]{\renewcommand{\@printISBN}{#1}}
+\newcommand{\pdfISSN}[1]{\renewcommand{\@pdfISSN}{#1}}
+\newcommand{\pdfISBN}[1]{\renewcommand{\@pdfISBN}{#1}}
+\newcommand{\ISSNL}[1]{\renewcommand{\@ISSNL}{#1}}
+\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
+\newcommand{\INSPEC}[1]{\renewcommand{\@INSPEC}{#1}}
+\newcommand{\pages}[1]{\renewcommand{\@pages}{#1}}
+
+\newcommand{\@printISSN}{unknown}
+\newcommand{\@printISBN}{unknown}
+\newcommand{\@pdfISSN}{unknown}
+\newcommand{\@pdfISBN}{unknown}
+\newcommand{\@ISSNL}{unknown}
+\newcommand{\@keywords}{}
+\newcommand{\@INSPEC}{}
+\newcommand{\@pages}{0}
+
+\newcommand{\frontmatter}{\setcounter{page}{1} \pagenumbering{roman}}
+\newcommand{\mainmatter}{\setcounter{page}{1} \pagenumbering{arabic}}
+
 
 \renewcommand{\maketitle}{%
 \begin{titlepage}
-$ $
+
 UNIVERSITY OF HELSINKI \hspace{2cm} REPORT SERIES IN ASTRONOMY
 \vspace{0.9cm}
 \center
 No. \@theseriesnumber
 
 \vspace{4cm}
-%\center
 
 \Huge{\textsf{\@title}}
 \vspace{2em}
 
-\Large{\textsf{\textbf{\@name}\\}}
+\Large{\textsf{\textbf{\@author}\\}}
 
 \vspace{2em}
 
@@ -78,22 +96,55 @@ the University of Helsinki, for public criticism in \@where~on \@when, at 12 o'c
 }
 \end{titlepage}
 \begin{titlepage}
+
+
 \textbf{}
 %\textbf{Cover picture:} The IRAM 30-m telescope on Pico Veleta in the Spanish
 %Sierra Nevada. Photo taken by O. Miettinen.
 %\topmargin 5.5in
 \vspace{39.5em}
 \center
-\noindent ISSN XX-XX (printed version)\\
-ISBN XX-XX-XX-XX-XX (printed version)\\
+\noindent ISSN \@printISSN~(printed version)\\
+ISBN \@printISBN~(printed version)\\
 Helsinki \@theyear\\
 Helsinki University Print (Unigrafia)\\
 \vspace{0.7em}
-ISSN XX-XX (pdf version)\\
-ISBN XX-XX-XX-XX-XX (pdf version)\\
-ISSN-L XX-XX\\
+ISSN \@pdfISSN~(pdf version)\\
+ISBN \@pdfISBN~(pdf version)\\
+ISSN-L \@ISSNL\\
 http://ethesis.helsinki.fi/\\
 Helsinki \@theyear\\
-Electronic Publications @ University of Helsinki (Helsingin yliopiston verkkojulkaisut)
+Electronic Publications @ University of Helsinki\\(Helsingin yliopiston verkkojulkaisut)
 \end{titlepage}
 }
+
+
+\renewenvironment{abstract}{%
+\clearpage
+\small
+\noindent \@author: \textbf{\@title}, University of Helsinki, \@theyear, \@pages~p.$+$appendices, 
+University of Helsinki Report Series in Astronomy, No. \@theseriesnumber,
+ISSN \@printISSN~(printed version), ISBN \@printISBN~(printed version),
+ISSN \@pdfISSN~(pdf version), ISBN \@pdfISBN~(pdf version), ISSN-L \@ISSNL
+
+\vspace{0.3cm}
+\noindent Classification (INSPEC): \@INSPEC \\
+\noindent Keywords: \@keywords
+
+\normalsize
+\section*{Abstract}
+}% ends before abstract
+{}% after abstract
+
+\newenvironment{acknowledgements}{%
+\clearpage
+\setlinespacing{1.25}
+\section*{Acknowledgements}
+}{}
+
+\newenvironment{publications}{%
+\clearpage
+\setlinespacing{1.25}
+\section*{List of publications}
+}{}
+

@@ -5,7 +5,7 @@ default: nobib
 	
 .phony: all
 all: thesis.tex
-	mkdir -p output
+	mkdir -p $(TEXOUT)
 	pdflatex $(TEXFLAGS) thesis.tex
 	bibtex $(TEXOUT)/thesis
 	pdflatex $(TEXFLAGS) thesis.tex
@@ -14,7 +14,7 @@ all: thesis.tex
 
 .phony: nobib
 nobib: thesis.tex
-	mkdir -p output
+	mkdir -p $(TEXOUT)
 	pdflatex $(TEXFLAGS) thesis.tex
 	pdflatex $(TEXFLAGS) thesis.tex
 	cp $(TEXOUT)/thesis.pdf .
@@ -22,4 +22,4 @@ nobib: thesis.tex
 .phony: clean
 clean:
 	rm -rf thesis.pdf
-	rm -rf output
+	rm -rf $(TEXOUT)

@@ -4,7 +4,7 @@ TEXFLAGS=-output-directory $(TEXOUT) -halt-on-error
 default: nobib
 	
 .phony: all
-all: thesis.tex
+all: thesis.tex thesis.bib
 	mkdir -p $(TEXOUT)
 	pdflatex $(TEXFLAGS) thesis.tex
 	bibtex $(TEXOUT)/thesis

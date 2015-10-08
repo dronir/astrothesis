@@ -93,8 +93,21 @@
 
 % ----------------- Set the page numberings for front and main matter -----------------
 
-\newcommand{\frontmatter}{\setcounter{page}{1} \pagenumbering{roman}}
-\newcommand{\mainmatter}{\setcounter{page}{1} \pagenumbering{arabic}}
+\let\@sectionbackup\section
+\newcommand{\frontmatter}{%
+	\setcounter{page}{1}%
+	\pagenumbering{roman}%
+	\renewcommand{\section}{\clearpage\@sectionbackup*}
+}
+	
+\newcommand{\mainmatter}{%
+	\setcounter{page}{1}%
+	\pagenumbering{arabic}%
+	\renewcommand{\section}{\@sectionbackup}
+}
+
+
+
 
 
 % ----------------- Set up the title page -----------------
@@ -173,7 +186,7 @@ University of Helsinki Report Series in Astronomy, No. \@theseriesnumber,
 \noindent \@keywords
 
 \normalsize
-\section*{Abstract}
+\@sectionbackup*{Abstract}
 }{}
 
 % ----------------- Make the acknowledgements environment -----------------

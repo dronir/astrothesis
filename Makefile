@@ -1,25 +1,37 @@
+NAME=thesis
 TEXOUT=output
+TEX=pdflatex
 TEXFLAGS=-output-directory $(TEXOUT) -halt-on-error
 
-default: nobib
+# Default target, build the pdf
+default: $(NAME).pdf
 	
+# Target 'all', compile .tex with BibTeX
+all: $(TEXOUT)/lightcurves.bbl $(NAME).pdf
 .phony: all
-all: thesis.tex thesis.bib
-	mkdir -p $(TEXOUT)
-	pdflatex $(TEXFLAGS) thesis.tex
-	bibtex $(TEXOUT)/thesis
-	pdflatex $(TEXFLAGS) thesis.tex
-	pdflatex $(TEXFLAGS) thesis.tex
-	cp $(TEXOUT)/thesis.pdf .
 
-.phony: nobib
-nobib: thesis.tex
+# This forces to run BibTeX
+$(TEXOUT)/lightcurves.bbl: $(NAME).tex $(NAME).bib
 	mkdir -p $(TEXOUT)
-	pdflatex $(TEXFLAGS) thesis.tex
-	pdflatex $(TEXFLAGS) thesis.tex
-	cp $(TEXOUT)/thesis.pdf .
+	$(TEX) $(TEXFLAGS) $(NAME).tex
+	bibtex $(TEXOUT)/$(NAME)
 
-.phony: clean
+# Build the pdf by running the typesetter twice
+$(NAME).pdf: $(NAME).tex FORCE
+	mkdir -p $(TEXOUT)
+	$(TEX) $(TEXFLAGS) $(NAME).tex
+	$(TEX) $(TEXFLAGS) $(NAME).tex
+	cp $(TEXOUT)/$(NAME).pdf .
+
+# Using the empty 'FORCE' as a dependency forces build
+FORCE:
+.phony: FORCE
+
 clean:
-	rm -rf thesis.pdf
+	rm -rf $(NAME).pdf
 	rm -rf $(TEXOUT)
+	rm -rf $(NAME).aux
+	rm -rf $(NAME).log
+	rm -rf $(NAME).synctex.gz
+.phony: clean
+	

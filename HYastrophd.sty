@@ -38,24 +38,25 @@
 \afourpaperfalse
 
 
-\DeclareOption{a4paper}
-   {\setlength\paperheight {297mm}%
+\DeclareOption{a4paper}{\afourpapertrue}
+\DeclareOption{b5paper}{\afourpaperfalse}
+
+\ExecuteOptions{a4paper}
+\ProcessOptions
+
+\ifafourpaper
+	\setlength\paperheight {297mm}%
     \setlength\paperwidth  {210mm}%
-    \afourpapertrue%
 	\newcommand{\@titlehskip}{2cm}%
 	\newcommand{\@titlevskip}{5cm}%
 	\newcommand{\@publvskip}{16cm}%
-  }
-\DeclareOption{b5paper}
-   {\setlength\paperheight {250mm}%
+\else
+	\setlength\paperheight {250mm}%
     \setlength\paperwidth  {176mm}%
 	\newcommand{\@titlehskip}{1.5cm}%
 	\newcommand{\@titlevskip}{1.5cm}%
-	\newcommand{\@publvskip}{12cm}%
-    \afourpaperfalse%
-  }
-
-\ProcessOptions
+	\newcommand{\@publvskip}{12cm}%	
+\fi
 
 % ----------------- Set up commands for the template values -----------------
 

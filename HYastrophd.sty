@@ -33,6 +33,30 @@
 \interfootnotelinepenalty=1000
 \sloppy
 
+\newif\ifafourpaper
+
+\afourpaperfalse
+
+
+\DeclareOption{a4paper}
+   {\setlength\paperheight {297mm}%
+    \setlength\paperwidth  {210mm}%
+    \afourpapertrue%
+	\newcommand{\@titlehskip}{2cm}%
+	\newcommand{\@titlevskip}{5cm}%
+	\newcommand{\@publvskip}{16cm}%
+  }
+\DeclareOption{b5paper}
+   {\setlength\paperheight {250mm}%
+    \setlength\paperwidth  {176mm}%
+	\newcommand{\@titlehskip}{1.5cm}%
+	\newcommand{\@titlevskip}{1.5cm}%
+	\newcommand{\@publvskip}{12cm}%
+    \afourpaperfalse%
+  }
+
+\ProcessOptions
+
 % ----------------- Set up commands for the template values -----------------
 
 % Define setter commands for internals
@@ -78,7 +102,7 @@
 \renewcommand{\maketitle}{%
 \begin{titlepage}
 
-UNIVERSITY OF HELSINKI \hspace{2cm} REPORT SERIES IN ASTRONOMY
+UNIVERSITY OF HELSINKI \hspace{\@titlehskip} REPORT SERIES IN ASTRONOMY
 \vspace{0.9cm}
 \center
 No. \@theseriesnumber
@@ -101,7 +125,7 @@ No. \@theseriesnumber
 	University of Helsinki\\
 	Helsinki, Finland\\
 
-\vspace{5em}
+\vspace{\@titlevskip}
 
 \normalsize{
   \textit{To be presented, with the permission of the Faculty of Science of
@@ -118,7 +142,8 @@ the University of Helsinki, for public criticism in \@where~on \@when.}}
 \textbf{}
 \@covertext
 %\topmargin 5.5in
-\vspace{39.5em}
+\vspace{\@publvskip}
+%\vspace{39.5em}
 \center
 \noindent \@printISSN \\ \@printISBN \\
 Helsinki \@theyear\\

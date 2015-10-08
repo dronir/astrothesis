@@ -37,22 +37,22 @@
 
 \afourpaperfalse
 
-
 \DeclareOption{a4paper}{\afourpapertrue}
 \DeclareOption{b5paper}{\afourpaperfalse}
 
 \ExecuteOptions{a4paper}
 \ProcessOptions
 
+
 \ifafourpaper
-	\setlength\paperheight {297mm}%
-    \setlength\paperwidth  {210mm}%
+	\setlength\paperheight{297mm}%
+    \setlength\paperwidth{210mm}%
 	\newcommand{\@titlehskip}{2cm}%
 	\newcommand{\@titlevskip}{5cm}%
 	\newcommand{\@publvskip}{16cm}%
 \else
-	\setlength\paperheight {250mm}%
-    \setlength\paperwidth  {176mm}%
+	\setlength\paperheight{250mm}%
+    \setlength\paperwidth{176mm}%
 	\newcommand{\@titlehskip}{1.5cm}%
 	\newcommand{\@titlevskip}{1.5cm}%
 	\newcommand{\@publvskip}{12cm}%	
@@ -157,7 +157,6 @@ the University of Helsinki, for public criticism in \@where~on \@when.}}
 \@covertext
 %\topmargin 5.5in
 \vspace{\@publvskip}
-%\vspace{39.5em}
 \center
 \noindent \@printISSN \\ \@printISBN \\
 Helsinki \@theyear\\

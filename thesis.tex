@@ -1,9 +1,10 @@
-\documentclass[a4paper,11pt,english]{report}
+\documentclass[b5paper,11pt,english,twoside]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{natbib}
+\usepackage{lipsum}
 \usepackage{HYastroPHD}
 
 % Defining these for your included papers will be useful
@@ -49,12 +50,12 @@
 \maketitle
 
 \begin{abstract}
-	Abstract goes here.
+	\lipsum[1-4]
 \end{abstract}
 
 
 \section{Acknowledgements}
-	Thanks go here.
+	\lipsum[3]
 
 
 \section{List of publications}
@@ -69,24 +70,33 @@
 
 
 %\section{List of abbreviations}
+%\section{List of symbols}
 
-
-\pagestyle{headings}
 \tableofcontents
 
 
 % The text itself begins here, changes to arabic numerals
 % and resets page counter.
-\mainmatter
+\cleardoublepage\mainmatter
 
 \chapter{Introduction}
 
 \section{A section in the Introduction chapter}
 
-\chapter{Some chapter title}
+\lipsum[1-8]
+
+\section{Another section}
+
+\lipsum[9-11]
 
 
-\chapter{Another chapter}
+\chapter{Theory}
+
+\section{First theory section}
+
+\lipsum
+
+
 
 
 

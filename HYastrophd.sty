@@ -3,6 +3,8 @@
 
 \RequirePackage{url}
 \RequirePackage{color}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
 
 % ----------------- Set up some journal commands -----------------
 \newcommand{\apj}{The Astrophysical Journal}
@@ -29,7 +31,6 @@
 \newcommand{\setlinespacing}[1]{\setlength{\baselineskip}{#1 \defbaselineskip}}
 \newcommand{\doublespacing}{\setlength{\baselineskip}{2.0 \defbaselineskip}}
 \newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
-\pagestyle{plain}
 \interfootnotelinepenalty=1000
 \sloppy
 
@@ -92,21 +93,38 @@
 
 
 % ----------------- Set the page numberings for front and main matter -----------------
-
+\fancyhf{}
+\setlength{\headheight}{13.6pt}
 \let\@sectionbackup\section
 \newcommand{\frontmatter}{%
 	\setcounter{page}{1}%
 	\pagenumbering{roman}%
+	\cfoot[\thepage]{\thepage}
+	\pagestyle{fancy}%
+	\renewcommand{\headrulewidth}{0pt}%
 	\renewcommand{\section}{\clearpage\@sectionbackup*}
 }
-	
+
+\renewcommand{\headrulewidth}{0pt}%
+
 \newcommand{\mainmatter}{%
 	\setcounter{page}{1}%
 	\pagenumbering{arabic}%
-	\renewcommand{\section}{\@sectionbackup}
+	\pagestyle{fancy}%
+	\renewcommand{\section}{\@sectionbackup}%
+	\renewcommand{\headrulewidth}{0pt}%
+	\fancyhead[RE]{\nouppercase{\textsc\rightmark}}%
+	\fancyhead[LO]{\nouppercase{\textsc\leftmark}}%
 }
 
 
+\titleformat{\chapter}%
+[hang]% shape
+{\bfseries\huge}% format
+{\thechapter\ }% label
+{0pt}% separator
+{}% before-code
+[\vspace{-2ex}]% after-code
 
 
 

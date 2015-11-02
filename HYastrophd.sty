@@ -38,10 +38,22 @@
 
 \afourpaperfalse
 
+\RequirePackage[T1]{fontenc}
+\RequirePackage[scaled]{berasans}%
+\RequirePackage{mathpazo}%
+
 \DeclareOption{a4paper}{\afourpapertrue}
 \DeclareOption{b5paper}{\afourpaperfalse}
+\DeclareOption{palatino}{%
+	\renewcommand{\familydefault}{ppl}%
+	\renewcommand{\sfdefault}{fvs}%
+}
+\DeclareOption{cmodern}{
+	\renewcommand{\familydefault}{cmr}%
+	\renewcommand{\sfdefault}{cmss}%
+}
 
-\ExecuteOptions{a4paper}
+\ExecuteOptions{a4paper,cmodern}
 \ProcessOptions
 
 
@@ -125,8 +137,6 @@
 {0pt}% separator
 {}% before-code
 [\vspace{-2ex}]% after-code
-
-
 
 % ----------------- Set up the title page -----------------
 

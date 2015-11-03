@@ -11,7 +11,3 @@ with `thesis.bib` as the bibliography file.
 
 The paper size used in the report series is B5. This package supports two paper
 sizes: A4 and B5, typesetting the title page to properly fit the page.
-
-You can give the package the option 'palatino', which will change the main font
-from Computer Modern to Palatino, and the sans serif font from Computer Modern
-Sans to Bera Sans.

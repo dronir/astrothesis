@@ -7,11 +7,11 @@ TEXFLAGS=-output-directory $(TEXOUT) -halt-on-error
 default: $(NAME).pdf
 	
 # Target 'all', compile .tex with BibTeX
-all: $(TEXOUT)/lightcurves.bbl $(NAME).pdf
+all: $(TEXOUT)/$(NAME).bbl $(NAME).pdf
 .phony: all
 
 # This forces to run BibTeX
-$(TEXOUT)/lightcurves.bbl: $(NAME).tex $(NAME).bib
+$(TEXOUT)/$(NAME).bbl: $(NAME).tex $(NAME).bib
 	mkdir -p $(TEXOUT)
 	$(TEX) $(TEXFLAGS) $(NAME).tex
 	bibtex $(TEXOUT)/$(NAME)
